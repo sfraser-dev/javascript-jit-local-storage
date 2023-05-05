@@ -10,11 +10,11 @@
 //
 // Local Storage methods used (setItem, getItem, key, clear)
 // (1) localStorage.setItem(storedKey, storedValue); // set a key/pair value in local storage
-// (2) const key = localStorage.key(i);              // get a key from local storage
+// (2) const key = localStorage.key(i);              // get keys from local storage (eg: for loop)
 // (3) const value = localStorage.getItem(key);      // get value associated wth a particular key
 // (4) localStorage.clear();                         // clear local storage data
 //----
-// (X) window.location.reload();                     // refresh webpage (not local storage method)
+// (X) window.location.reload();                     // refresh webpage (not a local storage method)
 
 // Get the HTML elements by ID
 const theKeyTextField = document.getElementById("theKeyTextField");
