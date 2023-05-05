@@ -26,3 +26,16 @@ submitButton.addEventListener("click", () => {
 });
 
 console.log(window.localStorage);
+
+// Task 1: output the key / value pairs from local storage to the document / browser.
+for (let i=0; i<window.localStorage.length; i++) {
+    // get the data that's in local storage
+    const key = window.localStorage.key(i);
+    const value = localStorage.getItem(key);
+    // output this data to the document / browser
+    let localStorageData = document.createElement("p");
+    localStorageData.setAttribute("id", `${key}`);
+    localStorageData.innerText = `Key: ${key} -- ${value}`;
+    document.body.append(localStorageData);
+}
+
