@@ -19,6 +19,7 @@ const theSearchTextField = document.getElementById("theSearchTextField");
 const searchButton = document.getElementById("searchButton");
 
 
+// Add some values to local storage.
 // If the key and value inputs are filled out, add them to local storage on submit button click
 submitButton.addEventListener("click", () => {
     let storedKey = theKeyTextField.value;
@@ -28,41 +29,39 @@ submitButton.addEventListener("click", () => {
         window.localStorage.setItem(storedKey, storedValue);
     }
 });
-
 // Output local storage data to the browser console
 console.log(window.localStorage);
 
-// TASK 1: output the key / value pairs from local storage to the document / browser
+// TASK 1: output the key/value pairs from local storage to the document/browser
 for (let i=0; i<window.localStorage.length; i++) {
-    // get the data that's in local storage
+    // Get the data that's stored in local storage
     const key = window.localStorage.key(i);
     const value = localStorage.getItem(key);
-    // output this data to the document / browser
+    // Output this data to the document/browser
     let localStorageData = document.createElement("p");
     localStorageData.setAttribute("id", `${key}`);
     localStorageData.innerText = `Key: ${key} -- ${value}`;
     document.body.append(localStorageData);
 }
 
-// TASK 2: Add a button that clears the local storage, deleting all key / value pairs
+// TASK 2: Add a button that clears the local storage, deleting all key/value pairs
 deleteButton.addEventListener("click", () => {
     // Delete the local storage data
     window.localStorage.clear();
-    // Clear document/browser of "printed" key/value pairs (that have now been deleted 
-    // from local storage). do this via reloading the page. 
+    // Clear document/browser of "printed" key/value pairs (that have just been deleted 
+    // from local storage) - do this via reloading the page. 
     window.location.reload();
 });
 
 // TASK 3: Search for and return a specific item in local storage. Output it to your browser
 searchButton.addEventListener("click", (e) => {
-    // Default behaviour on clicking submit button is to 
-    // refresh the page, e.preventDefault() stops this
+    // Default behaviour on clicking submit is to refresh the page, we need to prevent this...
     e.preventDefault();
-    // Grab the value (key) from the search text field
+    // Grab the value (key) from the search textfield
     const key = theSearchTextField.value;
     // Search local storage using the key to find it's paired value
     const searchResult = localStorage.getItem(key);
-    // Create a HTML paragraph element and output the found key/pair values
+    // Create a HTML paragraph element and output the found key/pair value
     const searchOutput = document.createElement("p");
     searchOutput.innerText = `Search result: ${key}:${searchResult}`;
     document.body.append(searchOutput);
