@@ -21,7 +21,7 @@ const theKeyTextField = document.getElementById("theKeyTextField");
 const theValueTextField = document.getElementById("theValueTextField");
 const submitButton = document.getElementById("submitButton");
 
-const deleteButton = document.getElementById("deleteButton");
+const deleteAllButton = document.getElementById("deleteAllButton");
 
 const theSearchTextField = document.getElementById("theSearchTextField");
 const searchButton = document.getElementById("searchButton");
@@ -53,7 +53,7 @@ for (let i=0; i<window.localStorage.length; i++) {
 }
 
 // TASK 2: Add a button that clears the local storage, deleting all key/value pairs
-deleteButton.addEventListener("click", () => {
+deleteAllButton.addEventListener("click", () => {
     // Delete the local storage data
     window.localStorage.clear();
     // Clear document/browser of "printed" key/value pairs (that have just been deleted 
