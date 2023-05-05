@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,29 +8,42 @@
     <script src="./app.js" defer></script>
     <title>Local Storage Exercise</title>
 </head>
+
 <body>
 
+    <!-- Input to local storage via form with text inputs -->
     <form>
-        <label for="theKey">Key:</label>
-        <input type="text" id="theKey">
-        <br>
-        <br>
-        <label for="theValue">Value:</label>
-        <input type="text" id="theValue">
-        <br>
-        <br>
-        <button type="submit" id="submitButton">Submit</button>
+        <fieldset>
+            <legend>
+                Input key/value pairs to local storage
+            </legend>
+            <!-- Key text input -->
+            <label for="theKeyTextField">Key:</label>
+            <input type="text" id="theKeyTextField">
+            <br>
+            <br>
+            <!-- Value text input -->
+            <label for="theValueTextField">Value:</label>
+            <input type="text" id="theValueTextField">
+            <br>
+            <br>
+            <!-- Input form submit button -->
+            <button type="submit" id="submitButton">Submit</button>
+        </fieldset>
     </form>
     <br>
 
+    <!-- Delete from local storage -->
+    <button type="button" id="deleteButton">Delete local storage key/value pairs</button>
+    <br>
+    <br>
+
+    <!-- Search local storage -->
     <form>
-        <input type="text" id="theSearch" placeholder="search...">
+        <input type="text" id="theSearchTextField" placeholder="search local storage keys...">
         <button type="submit" id="searchButton">Search</button>
     </form>
-    <br>
-
-    <button type="button" id="deleteButton">Delete local storage</button>
-
 
 </body>
+
 </html>

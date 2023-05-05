@@ -1,33 +1,38 @@
 "use strict";
 
-// Using local storage in browser (10MB max, just strings (as key-value pairs))
+// Using local storage in browser (5MB max, just strings (as key-value pairs))
+// (NB: on chrome, local storage uses SQLite file, like a very simple and small DB)
 // To see local storage in the browser, select: 
 // inspect - moreApps(>>) - application - local storage
 // 
-// each key must be independent (DAY : Mon, DAY: Tues, not allowed)
-// But can include JSON data in local storage to get around this "restriction"
-//
-// Default behaviour on clicking subit button is to refresh the page, e.preventDefault stops this
-// Location.reload() to clear the page (of the data that was deleted via localStorage.clear())
-//
-// Local storage is like a very primitive DB, similar idea
+// Each key must be independent (DAY : Mon, DAY: Tues, not allowed)
+// But we can include JSON data in local storage to get around this "restriction"
 
-const theKey = document.getElementById("theKey");
-const theValue = document.getElementById("theValue");
+// Get the HTML elements by ID
+const theKeyTextField = document.getElementById("theKeyTextField");
+const theValueTextField = document.getElementById("theValueTextField");
 const submitButton = document.getElementById("submitButton");
 
-submitButton.addEventListener("click", () => {
-    let storedKey = theKey.value;
-    let storedData = theValue.value; 
+const deleteButton = document.getElementById("deleteButton");
 
-    if (storedKey && storedData) {
-        window.localStorage.setItem(storedKey, storedData);
+const theSearchTextField = document.getElementById("theSearchTextField");
+const searchButton = document.getElementById("searchButton");
+
+
+// If the key and value inputs are filled out, add them to local storage on submit button click
+submitButton.addEventListener("click", () => {
+    let storedKey = theKeyTextField.value;
+    let storedValue= theValueTextField.value; 
+
+    if (storedKey && storedValue) {
+        window.localStorage.setItem(storedKey, storedValue);
     }
 });
 
+// Output local storage data to the browser console
 console.log(window.localStorage);
 
-// Task 1: output the key / value pairs from local storage to the document / browser.
+// TASK 1: output the key / value pairs from local storage to the document / browser
 for (let i=0; i<window.localStorage.length; i++) {
     // get the data that's in local storage
     const key = window.localStorage.key(i);
@@ -39,3 +44,26 @@ for (let i=0; i<window.localStorage.length; i++) {
     document.body.append(localStorageData);
 }
 
+// TASK 2: Add a button that clears the local storage, deleting all key / value pairs
+deleteButton.addEventListener("click", () => {
+    // Delete the local storage data
+    window.localStorage.clear();
+    // Clear document/browser of "printed" key/value pairs (that have now been deleted 
+    // from local storage). do this via reloading the page. 
+    window.location.reload();
+});
+
+// TASK 3: Search for and return a specific item in local storage. Output it to your browser
+searchButton.addEventListener("click", (e) => {
+    // Default behaviour on clicking submit button is to 
+    // refresh the page, e.preventDefault() stops this
+    e.preventDefault();
+    // Grab the value (key) from the search text field
+    const key = theSearchTextField.value;
+    // Search local storage using the key to find it's paired value
+    const searchResult = localStorage.getItem(key);
+    // Create a HTML paragraph element and output the found key/pair values
+    const searchOutput = document.createElement("p");
+    searchOutput.innerText = `Search result: ${key}:${searchResult}`;
+    document.body.append(searchOutput);
+});
