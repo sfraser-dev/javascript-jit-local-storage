@@ -7,6 +7,14 @@
 // 
 // Each key must be independent (DAY : Mon, DAY: Tues, not allowed)
 // But we can include JSON data in local storage to get around this "restriction"
+//
+// Local Storage methods used (setItem, getItem, key, clear)
+// (1) localStorage.setItem(storedKey, storedValue); // set a key/pair value in local storage
+// (2) const key = localStorage.key(i);              // get a key from local storage
+// (3) const value = localStorage.getItem(key);      // get value associated wth a particular key
+// (4) localStorage.clear();                         // clear local storage data
+//----
+// (X) window.location.reload();                     // refresh webpage (not local storage method)
 
 // Get the HTML elements by ID
 const theKeyTextField = document.getElementById("theKeyTextField");
@@ -32,15 +40,15 @@ submitButton.addEventListener("click", () => {
 // Output local storage data to the browser console
 console.log(window.localStorage);
 
-// TASK 1: output the key/value pairs from local storage to the document/browser
+// TASK 1: output the key/value pairs from local storage to the document/browser (in real-time)
 for (let i=0; i<window.localStorage.length; i++) {
     // Get the data that's stored in local storage
     const key = window.localStorage.key(i);
-    const value = localStorage.getItem(key);
+    const value = window.localStorage.getItem(key);
     // Output this data to the document/browser
     let localStorageData = document.createElement("p");
     localStorageData.setAttribute("id", `${key}`);
-    localStorageData.innerText = `Key: ${key} -- ${value}`;
+    localStorageData.innerText = `Local Storage (Key, Value): ${key}, ${value}`;
     document.body.append(localStorageData);
 }
 
