@@ -2,18 +2,21 @@
 
 // Using local storage in browser (5MB max, just strings (as key-value pairs))
 // (NB: on chrome, local storage uses SQLite file, like a very simple and small DB)
+// Data in local storage persists even after browser shut down and computer restarted
+// Don't put sensitive data in local storage, anyone with access to device can access it.
 // To see local storage in the browser, select: 
 // inspect - moreApps(>>) - application - local storage
 // 
-// Each key must be independent (DAY : Mon, DAY: Tues, not allowed)
+// Each key must be unique (DAY : Mon, DAY: Tues, not allowed)
 // But we can include JSON data in local storage to get around this "restriction"
 //
-//----- Local Storage methods used (setItem, getItem, key, clear)
+//----- All local storage methods (setItem, getItem, removeItem, key, clear)
 // (1) localStorage.setItem(storedKey, storedValue); // set a key/pair value in local storage
-// (2) const key = localStorage.key(i);              // get keys from local storage (eg: for loop)
+// (2) const key = localStorage.key(i);              // loop through keys in local storage (grab each key)
 // (3) const value = localStorage.getItem(key);      // get value associated wth a particular key
 // (4) localStorage.clear();                         // clear local storage data
-// ("5") window.location.reload(); // refresh page (not local storage method, but used in conjunction)
+// ("5") window.localStorage.removeItem(key);        // remove a key/value pair from local storage
+// ("6") window.location.reload(); // refresh page (not local storage method, but used in conjunction)
 //
 //----- JS DOM properties and methods
 // let myVar = htmlId.value                          // get value from element using its ID
@@ -21,7 +24,6 @@
 // newParagraph.setAttribute("id", "idName")         // give the new element an ID 
 // newParagraph.innerText = `new inner text`         // text, not HTML
 // document.body.append(newParagraph)                // add the paragraph to the body of page
-
 
 
 // Get the HTML elements by ID
